@@ -22,8 +22,8 @@ export const metadata = {
     'Mua iPhone chính hãng tại Bé Táo Store. Đa dạng model từ iPhone X đến iPhone 17 Series. Giá tốt nhất, bảo hành uy tín, giao hàng toàn quốc.',
   keywords: 'iPhone, mua iPhone, Bé Táo Store, iPhone chính hãng, iPhone giá rẻ',
   icons: {
-    icon: LOGO_URL,
-    apple: LOGO_URL,
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
   openGraph: {
     title: 'Bé Táo Store — iPhone Chính Hãng Giá Tốt',
