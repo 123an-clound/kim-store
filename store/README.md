@@ -1,11 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍎 Bé Táo Store
 
-## Getting Started
+Modern, responsive e-commerce store for iPhone products built with **Next.js 16**, **React 19**, **Tailwind CSS**, and **Supabase**.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
+- ⚡ **Next.js 16 with Turbopack** - Blazing fast builds and HMR
+- 🎨 **Modern UI** - Responsive design with Tailwind CSS
+- 🖼️ **Image Carousel** - Smooth animations with Framer Motion
+- 🌓 **Dark Mode** - Built-in theme toggle
+- 📊 **Real-time Data** - Connected to Supabase
+- 📱 **Mobile First** - Optimized for all devices
+- ♿ **Accessible** - WCAG compliant components
+- 🔍 **SEO Ready** - Metadata and structured data
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ and npm
+- Supabase account
+
+### Installation
+
+1. **Setup environment variables:**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your Supabase credentials
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run development server:**
+   ```bash
+   npm run dev
 # or
 yarn dev
 # or

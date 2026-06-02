@@ -15,11 +15,19 @@ async function fetchProducts() {
 
     if (error) {
       console.error('[Bé Táo Store] Supabase fetch error:', error.message);
+      console.error('[Bé Táo Store] Error details:', error);
       return [];
     }
-    return data || [];
+    
+    if (!data) {
+      console.warn('[Bé Táo Store] No data returned from Supabase');
+      return [];
+    }
+    
+    console.log(`[Bé Táo Store] Successfully fetched ${data.length} products`);
+    return data;
   } catch (err) {
-    console.error('[Bé Táo Store] Unexpected error:', err);
+    console.error('[Bé Táo Store] Unexpected error:', err.message);
     return [];
   }
 }
