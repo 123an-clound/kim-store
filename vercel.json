@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "store",
   "framework": "nextjs",
   "buildCommand": "npm install --include=dev && npm run build",
   "outputDirectory": ".next",
