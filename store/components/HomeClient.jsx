@@ -36,11 +36,7 @@ export default function HomeClient({ allCards, series }) {
   return (
     <>
       <Navbar />
-      <HeroSection
-        series={series}
-        activeSeries={activeSeries}
-        onSeriesChange={setActiveSeries}
-      />
+      <HeroSection />
 
       <section
         id="products"

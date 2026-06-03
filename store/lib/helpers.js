@@ -81,11 +81,10 @@ export function getSeries(name) {
   return 'Khác';
 }
 
-// Sort order for series (chronological)
+// Sort order for series (mới nhất trước)
 const SERIES_ORDER = [
-  'SE Series', 'X Series',
-  '11 Series', '12 Series', '13 Series', '14 Series',
-  '15 Series', '16 Series', '17 Series',
+  '17 Series', '16 Series', '15 Series', '14 Series',
+  '13 Series', '12 Series', '11 Series', 'X Series', 'SE Series',
 ];
 
 export function sortSeries(seriesArr) {

@@ -104,35 +104,71 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden border-t border-[var(--border-subtle)] bg-[var(--surface)] px-4 sm:px-6 pb-5"
+            style={{ borderTop: '1px solid var(--border-subtle)', background: 'var(--surface)' }}
+            className="lg:hidden"
           >
-            <div className="rounded-[var(--radius-xl)] border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-3 sm:p-4">
+            {/* Menu card */}
+            <div style={{ margin: '12px 16px 16px', borderRadius: 16, border: '1px solid var(--border-subtle)', background: 'var(--surface-elevated)', overflow: 'hidden' }}>
+
+              {/* Theme toggle */}
               <button
                 type="button"
-                onClick={() => {
-                  toggleTheme();
-                  setMobileMenuOpen(false);
+                onClick={() => { toggleTheme(); setMobileMenuOpen(false); }}
+                style={{
+                  width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '16px 20px', background: 'transparent', border: 'none',
+                  borderBottom: '1px solid var(--border-subtle)', cursor: 'pointer',
                 }}
-                className="w-full flex items-center justify-between py-3 text-base sm:text-lg font-semibold text-[var(--text-primary)] border-b border-[var(--border-subtle)]"
               >
-                <span className="flex items-center gap-2">
-                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                <span style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>
+                  <span style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--surface)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', flexShrink: 0 }}>
+                    {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+                  </span>
                   {theme === 'dark' ? 'Giao diện sáng' : 'Giao diện tối'}
                 </span>
-                <span className="text-caption">{theme === 'dark' ? 'Chuyển sáng' : 'Chuyển tối'}</span>
+                <span style={{ fontSize: 12, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '3px 10px', fontWeight: 500 }}>
+                  {theme === 'dark' ? 'Chuyển sáng' : 'Chuyển tối'}
+                </span>
               </button>
+
+              {/* Xem sản phẩm */}
               <a
                 href="#products"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between py-3 text-base sm:text-lg font-semibold text-[var(--text-primary)] border-b border-[var(--border-subtle)]"
+                style={{
+                  width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '16px 20px', textDecoration: 'none',
+                  borderBottom: '1px solid var(--border-subtle)',
+                }}
               >
-                <span>Xem sản phẩm</span>
-                <span className="text-caption">Khám phá ngay</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>
+                  <span style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--surface)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-secondary)' }}><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/></svg>
+                  </span>
+                  Xem sản phẩm
+                </span>
+                <span style={{ fontSize: 12, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '3px 10px', fontWeight: 500 }}>
+                  Khám phá
+                </span>
               </a>
-              <a href={TEL_URL} className="mt-4 btn-primary w-full !min-h-[48px]">
-                <Phone size={18} />
-                Gọi {HOTLINE_DISPLAY}
-              </a>
+
+              {/* Call CTA */}
+              <div style={{ padding: '16px 20px' }}>
+                <a
+                  href={TEL_URL}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                    width: '100%', minHeight: 52, borderRadius: 12,
+                    background: 'linear-gradient(135deg, #10b981, #059669)',
+                    color: '#fff', fontWeight: 700, fontSize: 16,
+                    textDecoration: 'none', boxShadow: '0 4px 16px rgba(16,185,129,0.35)',
+                  }}
+                >
+                  <Phone size={18} />
+                  Gọi {HOTLINE_DISPLAY}
+                </a>
+              </div>
+
             </div>
           </motion.div>
         )}
