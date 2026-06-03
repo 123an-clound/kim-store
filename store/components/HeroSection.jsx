@@ -55,7 +55,6 @@ export default function HeroSection() {
             style={{
               objectFit: 'cover',
               objectPosition: 'center 30%',
-              transform: 'scale(1.18)',
               transformOrigin: 'center 35%',
             }}
             sizes="100vw"
