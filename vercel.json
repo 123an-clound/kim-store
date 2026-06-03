@@ -1,4 +1,7 @@
 {
-  "buildCommand": "cd store && npm install && npm run build",
-  "outputDirectory": "store/.next"
+  "rootDirectory": "store",
+  "framework": "nextjs",
+  "buildCommand": "npm install --include=dev && npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install --include=dev"
 }
