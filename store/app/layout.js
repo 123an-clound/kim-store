@@ -17,6 +17,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://kim-store.vercel.app'),
   title: 'Kim store — iPhone Chính Hãng Giá Tốt',
   description:
     'Mua iPhone chính hãng tại Kim store. Đa dạng model từ iPhone X đến iPhone 17 Series. Giá tốt nhất, bảo hành uy tín, giao hàng toàn quốc.',
