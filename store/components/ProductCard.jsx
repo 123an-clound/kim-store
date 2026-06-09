@@ -63,7 +63,7 @@ export default function ProductCard({ card, onClick }) {
       transition={{ duration: 0.2 }}
       style={{ width: '100%', height: '100%', minWidth: 0 }}
     >
-      <div
+      <motion.div
         ref={triggerRef}
         role="button"
         tabIndex={0}
@@ -73,6 +73,8 @@ export default function ProductCard({ card, onClick }) {
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
+        whileHover={{ scale: 1.03, y: -4 }}
+        whileTap={{ scale: 0.98 }}
         className="ui-card ui-card-interactive focus-ring"
         style={{
           width: '100%',
@@ -140,7 +142,7 @@ export default function ProductCard({ card, onClick }) {
                   style={{
                     display: 'block', height: 4, borderRadius: 9999,
                     width: i === currentImg ? 16 : 4,
-                    background: i === currentImg ? '#10b981' : 'rgba(0,0,0,0.25)',
+                    background: i === currentImg ? 'var(--color-primary)' : 'rgba(0,0,0,0.25)',
                     border: 'none', cursor: 'pointer', padding: 0,
                     transition: 'all 0.2s',
                   }}
@@ -200,14 +202,14 @@ export default function ProductCard({ card, onClick }) {
             <div style={{
               fontSize: 20,
               fontWeight: 900,
-              color: '#059669',
+              color: 'var(--color-primary)',
               lineHeight: 1,
             }}>
               {startingPrice}
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.article>
   );
 }

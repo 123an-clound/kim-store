@@ -17,17 +17,17 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: 'Bé Táo Store — iPhone Chính Hãng Giá Tốt',
+  title: 'Kim store — iPhone Chính Hãng Giá Tốt',
   description:
-    'Mua iPhone chính hãng tại Bé Táo Store. Đa dạng model từ iPhone X đến iPhone 17 Series. Giá tốt nhất, bảo hành uy tín, giao hàng toàn quốc.',
-  keywords: 'iPhone, mua iPhone, Bé Táo Store, iPhone chính hãng, iPhone giá rẻ',
+    'Mua iPhone chính hãng tại Kim store. Đa dạng model từ iPhone X đến iPhone 17 Series. Giá tốt nhất, bảo hành uy tín, giao hàng toàn quốc.',
+  keywords: 'iPhone, mua iPhone, Kim store, iPhone chính hãng, iPhone giá rẻ',
   icons: {
-    icon: '/favicon.png',
-    apple: '/favicon.png',
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
   openGraph: {
-    title: 'Bé Táo Store — iPhone Chính Hãng Giá Tốt',
-    description: 'Mua iPhone chính hãng tại Bé Táo Store. Đa dạng model, giá tốt nhất.',
+    title: 'Kim store — iPhone Chính Hãng Giá Tốt',
+    description: 'Mua iPhone chính hãng tại Kim store. Đa dạng model, giá tốt nhất.',
     images: [LOGO_URL],
     type: 'website',
   },

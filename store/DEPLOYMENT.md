@@ -1,4 +1,4 @@
-# 🍎 Bé Táo Store — Deployment Guide
+# 🍎 Kim store — Deployment Guide
 
 ## ✨ Features
 

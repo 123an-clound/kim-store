@@ -14,20 +14,20 @@ async function fetchProducts() {
       .order('stt', { ascending: false });
 
     if (error) {
-      console.error('[Bé Táo Store] Supabase fetch error:', error.message);
-      console.error('[Bé Táo Store] Error details:', error);
+      console.error('[Kim store] Supabase fetch error:', error.message);
+      console.error('[Kim store] Error details:', error);
       return [];
     }
     
     if (!data) {
-      console.warn('[Bé Táo Store] No data returned from Supabase');
+      console.warn('[Kim store] No data returned from Supabase');
       return [];
     }
     
-    console.log(`[Bé Táo Store] Successfully fetched ${data.length} products`);
+    console.log(`[Kim store] Successfully fetched ${data.length} products`);
     return data;
   } catch (err) {
-    console.error('[Bé Táo Store] Unexpected error:', err.message);
+    console.error('[Kim store] Unexpected error:', err.message);
     return [];
   }
 }

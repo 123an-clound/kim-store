@@ -88,7 +88,7 @@ export default function ProductModal({ card, onClose }) {
                 {card.name}
               </h2>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 5 }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 10, fontWeight: 700, color: '#059669', background: 'rgba(16,185,129,0.1)', borderRadius: 9999, padding: '2px 8px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 10, fontWeight: 700, color: 'var(--color-primary-hover)', background: 'rgba(37,99,235,0.12)', borderRadius: 9999, padding: '2px 8px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   <Sparkles size={9} />{card.series}
                 </span>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 10, fontWeight: 600, color: 'var(--text-muted)', background: 'var(--surface-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '2px 8px' }}>
@@ -96,10 +96,10 @@ export default function ProductModal({ card, onClose }) {
                 </span>
               </div>
             </div>
-            <button type="button" onClick={onClose} aria-label="Đóng"
+            <motion.button type="button" onClick={onClose} whileHover={{ scale: 1.1, rotate: 90 }} whileTap={{ scale: 0.9 }} aria-label="Đóng"
               style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '50%', background: 'var(--surface-elevated)', border: '1px solid var(--border-subtle)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
               <X size={14} />
-            </button>
+            </motion.button>
           </div>
 
           {/* Scrollable body */}
@@ -122,18 +122,18 @@ export default function ProductModal({ card, onClose }) {
               </AnimatePresence>
               {images.length > 1 && (
                 <>
-                  <button type="button" onClick={prevImage}
+                  <motion.button type="button" onClick={prevImage} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
                     style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 30, height: 30, borderRadius: '50%', background: 'rgba(0,0,0,0.35)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
                     <ChevronLeft size={16} />
-                  </button>
-                  <button type="button" onClick={nextImage}
+                  </motion.button>
+                  <motion.button type="button" onClick={nextImage} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
                     style={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 30, height: 30, borderRadius: '50%', background: 'rgba(0,0,0,0.35)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
                     <ChevronRight size={16} />
-                  </button>
+                  </motion.button>
                   <div style={{ position: 'absolute', bottom: 8, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 4, zIndex: 2 }}>
                     {images.map((_, i) => (
-                      <button key={i} type="button" onClick={() => setCurrentImg(i)}
-                        style={{ height: 4, borderRadius: 9999, border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.2s', width: i === currentImg ? 16 : 4, background: i === currentImg ? '#10b981' : 'rgba(0,0,0,0.2)' }} />
+                      <motion.button key={i} type="button" onClick={() => setCurrentImg(i)} whileHover={{ scale: 1.3 }} whileTap={{ scale: 0.9 }}
+                        style={{ height: 4, borderRadius: 9999, border: 'none', padding: 0, cursor: 'pointer', transition: 'all 0.2s', width: i === currentImg ? 16 : 4, background: i === currentImg ? 'var(--color-primary)' : 'rgba(0,0,0,0.2)' }} />
                     ))}
                   </div>
                   <div style={{ position: 'absolute', top: 6, right: 8, zIndex: 2, background: 'rgba(0,0,0,0.4)', borderRadius: 6, padding: '1px 6px', fontSize: 10, fontWeight: 600, color: '#fff' }}>
@@ -145,10 +145,10 @@ export default function ProductModal({ card, onClose }) {
 
             {/* Giá + spec */}
             <div style={{ padding: '12px 14px 0' }}>
-              <div style={{ borderRadius: 12, border: '1px solid rgba(16,185,129,0.2)', background: 'linear-gradient(135deg,rgba(16,185,129,0.07),var(--surface-elevated))', padding: '10px 14px' }}>
-                <p style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#059669', margin: '0 0 4px' }}>Giá bán</p>
+              <div style={{ borderRadius: 12, border: '1px solid rgba(37,99,235,0.22)', background: 'linear-gradient(135deg,rgba(37,99,235,0.08),var(--surface-elevated))', padding: '10px 14px' }}>
+                <p style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary-hover)', margin: '0 0 4px' }}>Giá bán</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 24, fontWeight: 900, color: '#059669', lineHeight: 1 }}>{activeVariant.priceFormatted}</span>
+                  <span style={{ fontSize: 24, fontWeight: 900, color: 'var(--color-primary)', lineHeight: 1 }}>{activeVariant.priceFormatted}</span>
                   <span style={{ fontSize: 10, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '2px 7px' }}>{activeVariant.spec}</span>
                 </div>
               </div>
@@ -159,11 +159,11 @@ export default function ProductModal({ card, onClose }) {
               <p style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', margin: '0 0 8px' }}>Dung lượng / RAM</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 6 }}>
                 {card.variants.map((v, i) => (
-                  <button key={`${v.spec}-${v.price}-${i}`} type="button" onClick={() => selectVariant(v)}
-                    style={{ padding: '8px 10px', borderRadius: 9, textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s', border: isActive(v) ? '2px solid #10b981' : '1.5px solid var(--border-subtle)', background: isActive(v) ? 'rgba(16,185,129,0.07)' : 'var(--surface-elevated)', outline: 'none' }}>
-                    <span style={{ display: 'block', fontSize: 12, fontWeight: 700, color: isActive(v) ? '#059669' : 'var(--text-primary)', lineHeight: 1.3 }}>{v.spec}</span>
-                    <span style={{ display: 'block', fontSize: 11, fontWeight: 600, marginTop: 2, color: isActive(v) ? '#059669' : 'var(--text-muted)' }}>{v.priceFormatted}</span>
-                  </button>
+                  <motion.button key={`${v.spec}-${v.price}-${i}`} type="button" onClick={() => selectVariant(v)} whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}
+                    style={{ padding: '8px 10px', borderRadius: 9, textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s', border: isActive(v) ? '2px solid var(--color-primary)' : '1.5px solid var(--border-subtle)', background: isActive(v) ? 'rgba(37,99,235,0.08)' : 'var(--surface-elevated)', outline: 'none' }}>
+                    <span style={{ display: 'block', fontSize: 12, fontWeight: 700, color: isActive(v) ? 'var(--color-primary-hover)' : 'var(--text-primary)', lineHeight: 1.3 }}>{v.spec}</span>
+                    <span style={{ display: 'block', fontSize: 11, fontWeight: 600, marginTop: 2, color: isActive(v) ? 'var(--color-primary-hover)' : 'var(--text-muted)' }}>{v.priceFormatted}</span>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -188,14 +188,14 @@ export default function ProductModal({ card, onClose }) {
             background: 'var(--surface)',
             display: 'flex', gap: 8,
           }}>
-            <a href={TEL_URL}
-              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, height: 46, borderRadius: 12, background: 'linear-gradient(135deg,#10b981,#059669)', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none', boxShadow: '0 3px 10px rgba(16,185,129,0.35)' }}>
+            <motion.a href={TEL_URL} whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, height: 46, borderRadius: 12, background: 'linear-gradient(135deg,var(--color-primary),var(--color-primary-hover))', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none', boxShadow: '0 3px 12px rgba(37,99,235,0.35)' }}>
               <Phone size={15} />Gọi mua ngay
-            </a>
-            <a href={ZALO_URL} target="_blank" rel="noopener noreferrer"
-              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, height: 46, borderRadius: 12, background: '#2563eb', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none', boxShadow: '0 3px 10px rgba(37,99,235,0.3)' }}>
+            </motion.a>
+            <motion.a href={ZALO_URL} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, height: 46, borderRadius: 12, background: 'var(--color-info)', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none', boxShadow: '0 3px 12px rgba(14,165,233,0.3)' }}>
               <MessageCircle size={15} />Tư vấn Zalo
-            </a>
+            </motion.a>
           </div>
         </motion.div>
 
@@ -217,13 +217,13 @@ export default function ProductModal({ card, onClose }) {
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '1px solid var(--border-subtle)', flexShrink: 0 }}>
               <div style={{ display: 'flex', gap: 8 }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(16,185,129,0.1)', color: '#059669', borderRadius: 9999, padding: '4px 12px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}><Sparkles size={11} />{card.series}</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'rgba(37,99,235,0.12)', color: 'var(--color-primary-hover)', borderRadius: 9999, padding: '4px 12px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}><Sparkles size={11} />{card.series}</span>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: 'var(--surface-elevated)', color: 'var(--text-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '4px 12px', fontSize: 11, fontWeight: 600 }}><ShieldCheck size={11} />Chính hãng</span>
               </div>
-              <button type="button" onClick={onClose} aria-label="Đóng"
+              <motion.button type="button" onClick={onClose} whileHover={{ scale: 1.1, rotate: 90 }} whileTap={{ scale: 0.9 }} aria-label="Đóng"
                 style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--surface-elevated)', border: '1px solid var(--border-subtle)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>
                 <X size={16} />
-              </button>
+              </motion.button>
             </div>
             {/* Body 2 cols */}
             <div style={{ display: 'flex', flex: 1, minHeight: 0, overflow: 'hidden' }}>
@@ -237,10 +237,10 @@ export default function ProductModal({ card, onClose }) {
                 </AnimatePresence>
                 {images.length > 1 && (
                   <>
-                    <button type="button" onClick={prevImage} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 38, height: 38, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><ChevronLeft size={18} /></button>
-                    <button type="button" onClick={nextImage} style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 38, height: 38, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><ChevronRight size={18} /></button>
+                    <motion.button type="button" onClick={prevImage} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 38, height: 38, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><ChevronLeft size={18} /></motion.button>
+                    <motion.button type="button" onClick={nextImage} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }} style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2, width: 38, height: 38, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}><ChevronRight size={18} /></motion.button>
                     <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6, zIndex: 2 }}>
-                      {images.map((_, i) => <button key={i} type="button" onClick={() => setCurrentImg(i)} style={{ height: 5, borderRadius: 9999, border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.2s', width: i === currentImg ? 22 : 5, background: i === currentImg ? '#10b981' : 'rgba(0,0,0,0.2)' }} />)}
+                      {images.map((_, i) => <motion.button key={i} type="button" onClick={() => setCurrentImg(i)} whileHover={{ scale: 1.3 }} whileTap={{ scale: 0.9 }} style={{ height: 5, borderRadius: 9999, border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.2s', width: i === currentImg ? 22 : 5, background: i === currentImg ? 'var(--color-primary)' : 'rgba(0,0,0,0.2)' }} />)}
                     </div>
                     <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2, background: 'rgba(0,0,0,0.4)', borderRadius: 8, padding: '3px 8px', fontSize: 11, fontWeight: 600, color: '#fff' }}>{currentImg + 1}/{images.length}</div>
                   </>
@@ -251,10 +251,10 @@ export default function ProductModal({ card, onClose }) {
                   <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.2, margin: 0 }}>{card.name}</h2>
                   <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 5 }}>Chọn phiên bản phù hợp với bạn</p>
                 </div>
-                <div style={{ borderRadius: 14, border: '1px solid rgba(16,185,129,0.22)', background: 'linear-gradient(135deg,rgba(16,185,129,0.08),var(--surface-elevated))', padding: '16px 20px' }}>
-                  <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#059669', margin: '0 0 8px' }}>Giá bán</p>
+                <div style={{ borderRadius: 14, border: '1px solid rgba(37,99,235,0.24)', background: 'linear-gradient(135deg,rgba(37,99,235,0.10),var(--surface-elevated))', padding: '16px 20px' }}>
+                  <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary-hover)', margin: '0 0 8px' }}>Giá bán</p>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 34, fontWeight: 900, color: '#059669', lineHeight: 1 }}>{activeVariant.priceFormatted}</span>
+                    <span style={{ fontSize: 34, fontWeight: 900, color: 'var(--color-primary)', lineHeight: 1 }}>{activeVariant.priceFormatted}</span>
                     <span style={{ fontSize: 12, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '3px 10px' }}>Giá theo phiên bản</span>
                   </div>
                   <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 6 }}>{activeVariant.spec}</p>
@@ -263,11 +263,11 @@ export default function ProductModal({ card, onClose }) {
                   <p style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', margin: '0 0 10px' }}>Dung lượng / RAM</p>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(130px,1fr))', gap: 8 }}>
                     {card.variants.map((v, i) => (
-                      <button key={`${v.spec}-${v.price}-${i}`} type="button" onClick={() => selectVariant(v)}
-                        style={{ padding: '10px 14px', borderRadius: 10, textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s', border: isActive(v) ? '2px solid #10b981' : '1px solid var(--border-subtle)', background: isActive(v) ? 'rgba(16,185,129,0.1)' : 'var(--surface-elevated)', outline: 'none' }}>
-                        <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: isActive(v) ? '#059669' : 'var(--text-primary)', lineHeight: 1.3 }}>{v.spec}</span>
-                        <span style={{ display: 'block', fontSize: 12, fontWeight: 600, marginTop: 3, color: isActive(v) ? '#059669' : 'var(--text-muted)' }}>{v.priceFormatted}</span>
-                      </button>
+                      <motion.button key={`${v.spec}-${v.price}-${i}`} type="button" onClick={() => selectVariant(v)} whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}
+                        style={{ padding: '10px 14px', borderRadius: 10, textAlign: 'left', cursor: 'pointer', transition: 'all 0.15s', border: isActive(v) ? '2px solid var(--color-primary)' : '1px solid var(--border-subtle)', background: isActive(v) ? 'rgba(37,99,235,0.12)' : 'var(--surface-elevated)', outline: 'none' }}>
+                        <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: isActive(v) ? 'var(--color-primary-hover)' : 'var(--text-primary)', lineHeight: 1.3 }}>{v.spec}</span>
+                        <span style={{ display: 'block', fontSize: 12, fontWeight: 600, marginTop: 3, color: isActive(v) ? 'var(--color-primary-hover)' : 'var(--text-muted)' }}>{v.priceFormatted}</span>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
@@ -278,12 +278,12 @@ export default function ProductModal({ card, onClose }) {
                   </div>
                 )}
                 <div style={{ marginTop: 'auto', paddingTop: 4, display: 'flex', gap: 10 }}>
-                  <a href={TEL_URL} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 50, borderRadius: 12, background: 'linear-gradient(135deg,#10b981,#059669)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }}>
+                  <motion.a href={TEL_URL} whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 50, borderRadius: 12, background: 'linear-gradient(135deg,var(--color-primary),var(--color-primary-hover))', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 4px 18px rgba(37,99,235,0.35)' }}>
                     <Phone size={17} />Gọi mua ngay
-                  </a>
-                  <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 50, borderRadius: 12, background: '#2563eb', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 4px 16px rgba(37,99,235,0.3)' }}>
+                  </motion.a>
+                  <motion.a href={ZALO_URL} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 50, borderRadius: 12, background: 'var(--color-info)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: '0 4px 16px rgba(14,165,233,0.3)' }}>
                     <MessageCircle size={17} />Tư vấn Zalo
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </div>

@@ -10,62 +10,97 @@ export default function FloatingContact({ hidden = false }) {
       {!hidden && (
         <>
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
             className="fixed bottom-0 left-0 right-0 z-40 sm:hidden px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
             aria-label="Liên hệ nhanh"
           >
-            <div className="glass-card rounded-t-[var(--radius-2xl)] rounded-b-none border border-[var(--border-subtle)] border-b-0 px-3 py-3 shadow-[0_-10px_30px_rgba(0,0,0,0.12)]">
+            <div className="glass-card rounded-t-[var(--radius-2xl)] rounded-b-none border border-[var(--color-primary)]/30 border-b-0 px-3 py-3 shadow-[0_-10px_40px_rgba(245,158,11,0.25)]">
               <div className="grid grid-cols-2 gap-3">
-                <a
+                <motion.a
                   href={ZALO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Chat Zalo"
-                  className="flex items-center justify-center gap-2 h-12 rounded-[var(--radius-lg)] bg-[var(--color-info)] text-white font-semibold focus-ring touch-manipulation"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-2 h-14 rounded-[var(--radius-lg)] bg-[var(--color-info)] text-white font-semibold focus-ring touch-manipulation shadow-lg"
                 >
-                  <MessageCircle size={18} />
+                  <MessageCircle size={20} />
                   Zalo
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href={TEL_URL}
                   aria-label="Gọi điện"
-                  className="flex items-center justify-center gap-2 h-12 rounded-[var(--radius-lg)] bg-[var(--color-primary)] text-white font-semibold focus-ring touch-manipulation"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-2 h-14 rounded-[var(--radius-lg)] bg-[var(--color-primary)] text-white font-semibold focus-ring touch-manipulation shadow-lg"
                 >
-                  <Phone size={18} />
+                  <Phone size={20} />
                   Gọi ngay
-                </a>
+                </motion.a>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.2 }}
-            className="hidden sm:block fixed bottom-4 right-3 sm:bottom-6 sm:right-5 z-40 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+            initial={{ opacity: 0, y: 16, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.8 }}
+            transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
+            className="hidden sm:block fixed bottom-8 right-8 z-40 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
             aria-label="Liên hệ nhanh"
           >
-            <div className="glass-card rounded-[var(--radius-xl)] p-1.5 sm:p-2 flex flex-col gap-1.5 sm:gap-2">
-              <a
+            <div className="glass-card rounded-[var(--radius-xl)] p-2 flex flex-col gap-2 shadow-[0_8px_32px_rgba(245,158,11,0.3)] border border-[var(--color-primary)]/20">
+              <motion.a
                 href={ZALO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chat Zalo"
-                className="flex items-center justify-center w-11 h-11 sm:min-h-[48px] sm:min-w-[48px] sm:px-3 rounded-full sm:rounded-[var(--radius-lg)] bg-[var(--color-info)] text-white hover:brightness-110 focus-ring touch-manipulation"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    '0 0 0 0 rgba(14, 165, 233, 0.7)',
+                    '0 0 0 10px rgba(14, 165, 233, 0)',
+                  ],
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                  },
+                }}
+                className="flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-info)] text-white focus-ring touch-manipulation shadow-lg"
               >
-                <MessageCircle size={20} />
-              </a>
-              <a
+                <MessageCircle size={24} />
+              </motion.a>
+              <motion.a
                 href={TEL_URL}
                 aria-label="Gọi điện"
-                className="flex items-center justify-center w-11 h-11 sm:min-h-[48px] sm:min-w-[48px] sm:px-3 rounded-full sm:rounded-[var(--radius-lg)] bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] focus-ring touch-manipulation"
+                whileHover={{ scale: 1.15, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    '0 0 0 0 rgba(245, 158, 11, 0.7)',
+                    '0 0 0 10px rgba(245, 158, 11, 0)',
+                  ],
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                    delay: 1,
+                  },
+                }}
+                className="flex items-center justify-center w-14 h-14 rounded-full bg-[var(--color-primary)] text-white focus-ring touch-manipulation shadow-lg"
               >
-                <Phone size={20} />
-              </a>
+                <Phone size={24} />
+              </motion.a>
             </div>
           </motion.div>
         </>

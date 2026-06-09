@@ -10,7 +10,27 @@ import { TEL_URL, HOTLINE_DISPLAY } from '@/lib/constants';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    // Initialize theme from localStorage or system preference
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = saved || (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+
+    // Listen for storage changes from other tabs
+    const handleStorageChange = () => {
+      const newTheme = localStorage.getItem('theme');
+      if (newTheme) setTheme(newTheme);
+    };
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const scrolled = useSyncExternalStore(
     (onStoreChange) => {
@@ -20,11 +40,6 @@ export default function Navbar() {
     () => window.scrollY > 16,
     () => false
   );
-
-  useEffect(() => {
-    // Sync initial theme from HTML class set in layout script.
-    setTheme(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
@@ -51,50 +66,66 @@ export default function Navbar() {
       }`}
     >
       <div className="section-shell section-padding flex items-center justify-between h-14 sm:h-16 lg:h-[4.5rem]">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group focus-ring rounded-lg">
-          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-[var(--radius-md)] overflow-hidden ring-1 ring-[var(--border-subtle)] group-hover:ring-emerald-500/40 transition-all">
-            <Image
-              src={LOGO_URL}
-              alt="Bé Táo Store logo"
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 32px, 36px"
-            />
-          </div>
-          <span className="font-bold text-base sm:text-lg lg:text-xl tracking-tight heading-display">
-            <span className="text-[var(--text-primary)]">Bé Táo</span>{' '}
-            <span className="text-gold-gradient">Store</span>
-          </span>
-        </Link>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group focus-ring rounded-lg">
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-[var(--radius-md)] overflow-hidden ring-1 ring-[var(--border-subtle)] group-hover:ring-[var(--color-primary)]/50 transition-all shadow-sm group-hover:shadow-md group-hover:shadow-[var(--color-primary)]/20">
+              <Image
+                src={LOGO_URL}
+                alt="Kim store logo"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 40px, 44px"
+              />
+            </div>
+            <span className="font-bold text-lg sm:text-xl lg:text-2xl tracking-tight heading-display">
+              <span className="text-[var(--text-primary)]">Kim</span>{' '}
+              <span className="text-gold-gradient">Store</span>
+            </span>
+          </Link>
+        </motion.div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <button
+          <motion.button
             type="button"
             onClick={toggleTheme}
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
             className="btn-ghost gap-2 !min-h-[40px] px-4"
             aria-label={theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             {theme === 'dark' ? 'Sáng' : 'Tối'}
-          </button>
-          <a href={TEL_URL} className="btn-ghost gap-2 !min-h-[40px] px-4">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden />
+          </motion.button>
+          <motion.a
+            href={TEL_URL}
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-ghost gap-2 !min-h-[40px] px-4"
+          >
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" aria-hidden />
             {HOTLINE_DISPLAY}
-          </a>
-          <a href="#products" className="btn-primary btn-sm !min-h-[40px] px-5">
+          </motion.a>
+          <motion.a
+            href="#products"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-primary btn-sm !min-h-[40px] px-5"
+          >
             Sản phẩm
-          </a>
+          </motion.a>
         </div>
 
-        <button
+        <motion.button
           type="button"
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
           className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-primary)] focus-ring rounded-[var(--radius-md)]"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
         >
           {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        </motion.button>
       </div>
 
       <AnimatePresence>
@@ -111,9 +142,11 @@ export default function Navbar() {
             <div style={{ margin: '12px 16px 16px', borderRadius: 16, border: '1px solid var(--border-subtle)', background: 'var(--surface-elevated)', overflow: 'hidden' }}>
 
               {/* Theme toggle */}
-              <button
+              <motion.button
                 type="button"
                 onClick={() => { toggleTheme(); setMobileMenuOpen(false); }}
+                whileHover={{ scale: 1.02, x: 4 }}
+                whileTap={{ scale: 0.98 }}
                 style={{
                   width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   padding: '16px 20px', background: 'transparent', border: 'none',
@@ -129,12 +162,14 @@ export default function Navbar() {
                 <span style={{ fontSize: 12, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '3px 10px', fontWeight: 500 }}>
                   {theme === 'dark' ? 'Chuyển sáng' : 'Chuyển tối'}
                 </span>
-              </button>
+              </motion.button>
 
               {/* Xem sản phẩm */}
-              <a
+              <motion.a
                 href="#products"
                 onClick={() => setMobileMenuOpen(false)}
+                whileHover={{ scale: 1.02, x: 4 }}
+                whileTap={{ scale: 0.98 }}
                 style={{
                   width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   padding: '16px 20px', textDecoration: 'none',
@@ -150,23 +185,39 @@ export default function Navbar() {
                 <span style={{ fontSize: 12, color: 'var(--text-muted)', background: 'var(--surface)', border: '1px solid var(--border-subtle)', borderRadius: 9999, padding: '3px 10px', fontWeight: 500 }}>
                   Khám phá
                 </span>
-              </a>
+              </motion.a>
 
               {/* Call CTA */}
               <div style={{ padding: '16px 20px' }}>
-                <a
+                <motion.a
                   href={TEL_URL}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      '0 6px 18px rgba(245, 158, 11, 0.35)',
+                      '0 8px 24px rgba(245, 158, 11, 0.5)',
+                      '0 6px 18px rgba(245, 158, 11, 0.35)',
+                    ],
+                  }}
+                  transition={{
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: 'loop',
+                    },
+                  }}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                     width: '100%', minHeight: 52, borderRadius: 12,
-                    background: 'linear-gradient(135deg, #10b981, #059669)',
+                    background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-hover))',
                     color: '#fff', fontWeight: 700, fontSize: 16,
-                    textDecoration: 'none', boxShadow: '0 4px 16px rgba(16,185,129,0.35)',
+                    textDecoration: 'none', boxShadow: '0 6px 18px rgba(245, 158, 11, 0.35)',
                   }}
                 >
                   <Phone size={18} />
                   Gọi {HOTLINE_DISPLAY}
-                </a>
+                </motion.a>
               </div>
 
             </div>

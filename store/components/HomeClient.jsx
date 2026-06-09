@@ -91,7 +91,7 @@ export default function HomeClient({ allCards, series }) {
                   <button
                     type="button"
                     onClick={() => setActiveSeries(null)}
-                    className="p-0.5 rounded-full hover:bg-emerald-500/20 focus-ring"
+                      className="p-0.5 rounded-full hover:bg-blue-500/10 focus-ring"
                     aria-label="Xóa bộ lọc"
                   >
                     <X size={14} />
@@ -127,14 +127,16 @@ export default function HomeClient({ allCards, series }) {
 
 function SeriesPill({ label, active, onClick }) {
   return (
-    <button
+    <motion.button
       type="button"
       role="tab"
       aria-selected={active}
       onClick={onClick}
+      whileHover={{ scale: 1.08, y: -2 }}
+      whileTap={{ scale: 0.96 }}
       className={`series-pill focus-ring ${active ? 'series-pill--active' : ''}`}
     >
       {label}
-    </button>
+    </motion.button>
   );
 }

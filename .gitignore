@@ -1,2 +1,17 @@
 .vercel
 .env*
+
+# Project-specific
+python_env/
+
+# Next.js app lives in /store
+store/node_modules/
+store/.next/
+store/out/
+store/build/
+
+# Logs / misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store

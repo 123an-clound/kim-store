@@ -23,7 +23,11 @@ export function buildImageUrl(rawPath) {
   // Heuristic: some rows may miss the file extension in the source column.
   // Default to ".png" (this store asset set is mostly PNG).
   const finalName = /\.[a-z0-9]+$/i.test(filename) ? filename : `${filename}.png`;
-  return `${STORAGE_BASE_URL}${encodeURIComponent(finalName)}`;
+  // NOTE:
+  // Don't pre-encode here. Next/Image will encode the remote URL into its optimizer
+  // endpoint; if we encode in advance, spaces may become double-encoded (%2520) and
+  // cause 404 from Supabase Storage.
+  return `${STORAGE_BASE_URL}${finalName}`;
 }
 
 // Return up to 6 non-null image URLs from a raw product row

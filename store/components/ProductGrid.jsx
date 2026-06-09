@@ -29,13 +29,15 @@ export default function ProductGrid({ cards, onCardClick, onResetFilter }) {
             Thử chọn dòng iPhone khác hoặc xem toàn bộ danh mục.
           </p>
           {onResetFilter && (
-            <button
+            <motion.button
               type="button"
               onClick={onResetFilter}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               className="mt-6 btn-primary text-sm py-3 px-6 min-h-[44px]"
             >
               Xem tất cả sản phẩm
-            </button>
+            </motion.button>
           )}
         </motion.div>
       )}
