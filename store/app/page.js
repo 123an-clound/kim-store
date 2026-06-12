@@ -1,4 +1,4 @@
-import supabase from '@/lib/supabase';
+import getSupabase from '@/lib/supabase';
 import { groupByModel, sortSeries } from '@/lib/helpers';
 import HomeClient from '@/components/HomeClient';
 import Footer from '@/components/Footer';
@@ -8,6 +8,7 @@ export const revalidate = 0;
 
 async function fetchProducts() {
   try {
+    const supabase = getSupabase();
     const { data, error } = await supabase
       .from('kho_hang_iphone')
       .select('*')
